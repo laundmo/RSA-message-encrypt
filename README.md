@@ -4,15 +4,16 @@ Encrypt your messages with RSA, or decrypt messages you got from someone else. U
 ## Usage
 
 ```
-usage: main.py [-h] [--priv FILE] [--pub FILE] [--github GITHUB]
+usage: main.py [-h] [--priv FILE] [--pub FILE] [--github GITHUB] [--priv_pw PRIV_PW]
 
 Encrypt messages with ssh keys.
 
 optional arguments:
-  -h, --help       show this help message and exit
-  --priv FILE      The path to the Private ssh key.
-  --pub FILE       The path to the Public ssh key of the other correspondent.
-  --github GITHUB  A GitHub username to get a public key from.
+  -h, --help         show this help message and exit
+  --priv FILE        The path to the Private ssh key.
+  --pub FILE         The path to the Public ssh key of the other correspondent.
+  --github GITHUB    A GitHub username to get a public key from.
+  --priv_pw PRIV_PW  Your Private key password (if needed).
 ```
 
 you may be promted to select a specific public key, if github knows multiple for the person

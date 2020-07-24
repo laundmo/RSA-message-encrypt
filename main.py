@@ -15,7 +15,8 @@ parser.add_argument('--pub', help='The path to the Public ssh key of the other c
                     metavar='FILE', type=argparse.FileType('r'), default=None)
 parser.add_argument(
     '--github', help='A GitHub username to get a public key from.')
-
+parser.add_argument(
+    '--priv_pw', help='Your Private key password (if needed).', default=None)
 
 def get_publickey_from_file(path: Path):
     pKCS8key = subprocess.check_output(
@@ -92,7 +93,7 @@ def get_private_key_from_path(path: Path):
     with path.open("r") as f:
         privatekey = serialization.load_pem_private_key(
             bytes(f.read(), encoding="utf-8"),
-            password=None,
+            password=args.priv_pw,
             backend=default_backend()
         )
     return privatekey
@@ -107,10 +108,10 @@ if not Path(args.priv).exists():
 
 publickey = None
 if args.pub:
-    publickey = get_publickey_from_file(args.pub)
+    publickey = get_publickey_from_file(Path(args.pub))
 if args.github:
     publickey = get_github_publickey(args.github)
-privatekey = get_private_key_from_path(args.priv)
+privatekey = get_private_key_from_path(Path(args.priv))
 
 options = None
 options_keys = {}
