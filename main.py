@@ -101,7 +101,7 @@ def get_private_key_from_path(path: Path):
 args = parser.parse_args()
 if not (args.pub or args.github):
     parser.error('No way to get Public Key, add --pub or --github')
-if not args.priv.exists():
+if not Path(args.priv).exists():
     parser.error(
         'Private key couldnt be found, please specify Private key path with --priv')
 
